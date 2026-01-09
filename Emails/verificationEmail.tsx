@@ -20,7 +20,7 @@ const VerificationEmail = ({
           <Container className="mb-10 mx-auto p-5 max-w-116.25">
             <Section className="mt-10">
               <Img
-                src={`https://example.com/brand/example-logo.png`}
+                src={`public/next.svg`}
                 width="60"
                 height="60"
                 alt="Logo Example"
@@ -39,7 +39,6 @@ const VerificationEmail = ({
             <Section className="text-center mt-8 mb-8">
               <Button
                 className="py-2.5 px-5 bg-white rounded-md text-black text-sm font-semibold no-underline text-center"
-                href={`https://example.com/get-started`}
               >
                 {otp}
               </Button>
