@@ -78,7 +78,7 @@ export async function POST(request: Request) {
                 message: "User registered Successfully. Please verify your email."
             }, {status: 201})
     } catch (error) {
-        console.log("Error Registering User", error)
+        // console.log("Error Registering User", error)
         return Response.json({
             success: false,
             message: "Error registering user"
