@@ -9,10 +9,11 @@ export async function POST(request: Request) {
     const decodedUsername = decodeURIComponent(username);
     const user = await UserModel.findOne({ username: decodedUsername });
 
+    console.log("user : ", user)
     if (!user) {
       return Response.json(
         { success: false, message: "User not found" },
-        { status: 500 }
+        { status: 404 }
       );
     }
 

@@ -70,6 +70,7 @@ export default function Component() {
             onClick: () => console.log('Undo')
           }
         })
+        router.replace(`/verify/${data.username}`)
       }
       if(!response.data.success) {
         toast.error("Signing user failed", {
