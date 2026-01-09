@@ -8,7 +8,7 @@ const connection: ConnectionObject = {}
 
 export default async function dbConnect(): Promise<void> {
     if (connection.isConnected) {
-        console.log("Already Connected");
+        // console.log("Already Connected");
         return
     }
 
@@ -17,14 +17,14 @@ export default async function dbConnect(): Promise<void> {
         
         connection.isConnected = db.connections[0].readyState
 
-        console.log("***********************************************")
-        console.log(db) // Delete me after observing.
-        console.log("***********************************************")
+        // console.log("***********************************************")
+        // console.log(db) // Delete me after observing.
+        // console.log("***********************************************")
 
-        console.log("DB Connected Successfully.")
+        // console.log("DB Connected Successfully.")
     } catch (error) {
         
-        console.log("Database Connection Failed")
+        // console.log("Database Connection Failed")
         process.exit()
     }
 }
