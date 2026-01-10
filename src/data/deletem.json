@@ -1,0 +1,18 @@
+[
+        {
+            "username": "two",
+            "isAcceptingMessage": true
+        },
+        {
+            "username": "six",
+            "isAcceptingMessage": true
+        },
+        {
+            "username": "eight",
+            "isAcceptingMessage": true
+        },
+        {
+            "username": "nine",
+            "isAcceptingMessage": true
+        }
+    ]

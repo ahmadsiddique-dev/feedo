@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import React from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const page = () => {
   const plugin = React.useRef(
@@ -19,14 +21,19 @@ const page = () => {
   return (
     <>
       <main className="grow flex flex-col items-center justify-center px-4 md:px-24">
-        <section className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-5xl font-bold">
+        <section className="text-center mt-12 mb-8 md:mb-12">
+          <h1 className="text-xl md:text-5xl font-bold">
             {" "}
             Dive into the World of Anonymous Conversations
           </h1>
           <p className="mt-3 md:mt-4 text-base md:text-lg">
             Gain anonymous feedbacks - Where your identity remains a secret
           </p>
+        </section>
+        <section className="my-4 mb-10">
+          <Link href={'/users'}>
+            <Button variant={"default"} size={"lg"}>Find User</Button>
+          </Link>
         </section>
         <Carousel
           plugins={[plugin.current]}
@@ -52,7 +59,7 @@ const page = () => {
           {/* <CarouselPrevious /> */}
           {/* <CarouselNext /> */}
         </Carousel>
-        <footer className="w-full py-6 text-center border-t mt-48">
+        <footer className="w-full py-6 text-center border-t mt-14">
           <p>
             © 2025 Feedo Messages. All rights reserved.
           </p>

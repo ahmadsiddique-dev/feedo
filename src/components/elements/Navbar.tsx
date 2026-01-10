@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { User } from "next-auth";
 import { Button } from "../ui/button";
+import { LogOut } from "lucide-react";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -20,10 +21,13 @@ const Navbar = () => {
         <span>
           {session ? (
             <>
-              <span className="mr-4">Welcome, {user.email}</span>
-              <Button className="w-full md:w-full" onClick={() => signOut()}>
-                Logout
+            <div className="flex justify-center  items-center gap-4">
+              
+              <span className="mr-4">{user.email}</span>
+              <Button onClick={() => signOut()}>
+                <LogOut />
               </Button>
+            </div>
             </>
           ) : (
             <Link href={"/signin"}>
