@@ -12,7 +12,7 @@ export const EmailValidation = z
 
 export const PasswordValidation = z
     .string()
-    .min(6, {message: "Password must be greater than 6 Character"})
+    .min(4, {message: "Password must be greater than 6 Character"})
 
 export const signUpSchema = z.object({
     username: UsernameValidation,

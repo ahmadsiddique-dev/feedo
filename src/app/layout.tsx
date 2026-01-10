@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Figtree } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { Toaster } from "sonner";
+import Navbar from "@/components/elements/Navbar";
 
 const figtree = Figtree({subsets:['latin'],variable:'--font-sans'});
 
@@ -30,8 +31,9 @@ export default function RootLayout({
     <html lang="en" className={figtree.variable}>
       <AuthProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={``}
         >
+          <Navbar/>
         {children}
         <Toaster richColors position="top-right" />
       </body>

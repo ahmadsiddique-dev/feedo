@@ -1,13 +1,12 @@
 "use client"
 import { Button } from '@/components/ui/button';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
-import { Input } from '@/components/ui/input';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/components/ui/input-otp';
 import { verifySchema } from '@/schemas/verifySchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { Loader2 } from 'lucide-react';
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -15,7 +14,6 @@ import * as z from 'zod';
 
 const page = () => {
 
-    const router = useRouter();
     const param =  useParams();
     const [isSubmitting, setIsSubmitting] = useState(false)
 

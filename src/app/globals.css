@@ -47,6 +47,16 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
+.isolateme {
+  all: revert; /* Cuts off styles from parent tags */
+}
+
+@media (width > 786px) {
+  .my-custom {
+    width: 90vw;
+  }
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
