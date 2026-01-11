@@ -28,7 +28,7 @@ const page = () => {
                 toast.error("Unable to fetch users")
             }
             setData(response.data.data)
-            console.log('DAta: ', response.data.data)
+            // console.log('DAta: ', response.data.data)
         } catch (error) {
             toast.error("Error while fetching users")
         }

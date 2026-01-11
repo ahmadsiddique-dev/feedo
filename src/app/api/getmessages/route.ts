@@ -32,7 +32,7 @@ export async function GET(request:Request) {
     }
 ]);
 
-    console.log("USERMessages: ", messages)
+    // console.log("USERMessages: ", messages)
     if (!messages || messages.length === 0) {
     return Response.json(
       { success: false, message: "Messages not found" },

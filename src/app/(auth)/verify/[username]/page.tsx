@@ -6,7 +6,7 @@ import { verifySchema } from '@/schemas/verifySchema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { Loader2 } from 'lucide-react';
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -16,6 +16,7 @@ const page = () => {
 
     const param =  useParams();
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const router = useRouter();
 
     const form = useForm<z.infer<typeof verifySchema>>({
         resolver: zodResolver(verifySchema)
@@ -23,17 +24,20 @@ const page = () => {
 
     const onSubmit = async (data: z.infer<typeof verifySchema>) => {
         try {
-            console.log("Code: ", data.code)
             setIsSubmitting(true)
             const response = await axios.post('/api/verifycode', {
                 username: param.username,
                 code: data.code
             })
 
-            toast.success("Success", {
-                description: response.data.message,
-                action: 'Undo'
-            })
+            if (response.data.success) {
+                toast.success("User verified successfully");
+                router.push("/signin")
+            }
+            if (!response.data.success) {
+                toast.error("unable to verify")
+            }
+
         } catch (error: any) {
             toast.error("Failed", {
                 description: error.message || 'An unexpected error occured', 
@@ -44,7 +48,7 @@ const page = () => {
         }
     }
   return (
-    <div className="min-h-screen justify-center items-center flex bg-gray-100">
+    <div className="min-h-[90vh] justify-center items-center flex bg-gray-100">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-mg">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">Verify Your Account</h1>
@@ -78,7 +82,7 @@ const page = () => {
           </FieldGroup>
           <br />
           <Button type="submit" disabled={isSubmitting}>
-                  {isSubmitting ? <> <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait </>: ('Signup')}
+                  {isSubmitting ? <> <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait </>: ('Submit')}
               </Button>
           </form>
         </div>

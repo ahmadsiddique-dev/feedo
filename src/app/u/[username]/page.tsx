@@ -10,6 +10,7 @@ import z from "zod";
 import axios from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { toast } from "sonner";
+import { useChat } from '@ai-sdk/react';
 import Link from "next/link";
 
 const promptSchema = z.object({
@@ -22,15 +23,27 @@ const promptSchema = z.object({
     .max(250, { message: "Feedback must be less than 250 characters" }),
 });
 
-const page = () => {
-  const [feedback, setFeedback] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
-  const prompts = [
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente dignissimos fuga natus et necessitatibus autem. .",
-    "Lorem ipsum dolor sit amet consectetur adipisiit.cing el Sapiente dignissimos fuga n",
-    "Lorem ipsum dolor sit amet consecte. Sapiente dignissimos fuga natus et necessitatibus autem. .",
-  ];
+const Chat = () => {
+  const [feedback, setFeedback] = useState("");
+  const [isLLoading, setIsLoading] = useState(false);
+  const { messages, sendMessage } = useChat({
+    onFinish: (message) => {
+      // const aiResponse = message.message.parts[1]?.text.split("||") // This one has problem with typescript
+      const secondPart = message.message.parts[1];
+      if (secondPart?.type === 'text') {
+        const aiResponse = secondPart.text.split("||");
+        setPrompt(aiResponse);
+    }
+    }
+  });
+  const [prompts, setPrompt] = useState([
+    "What's a song that always puts you in a good mood?",
+    "If you could travel anywhere in the world for a week, where would you go and why?",
+    "What's a skill you'd love to learn if you had unlimited time?",
+  ])
+
+
 
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -55,6 +68,7 @@ const page = () => {
 
       if (response.data.success) {
         toast.success(response.data.message);
+        setFeedback("")
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -62,6 +76,10 @@ const page = () => {
       setIsLoading(false);
     }
   };
+
+  const handleSuggetion = async () => {
+    sendMessage({text: `Create a list of three open-ended and engaging questions formatted as a single string. Each question should be separated by '||'. These questions are for an anonymous social messaging platform, like Qooh.me, and should be suitable for a diverse audience. Avoid personal or sensitive topics, focusing instead on universal themes that encourage friendly interaction. For example, your output should be structured like this: 'What's a hobby you've recently started?||If you could have dinner with any historical figure, who would it be?||What's a simple thing that makes you happy?'. Ensure the questions are intriguing, foster curiosity, and contribute to a positive and welcoming conversational environment.`})
+  }
 
   const handleFeedback = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFeedback(e.currentTarget.value);
@@ -83,7 +101,7 @@ const page = () => {
         />
         <div>
           <Button onClick={handleSubmit}>
-            {isLoading ? <Loader2 className="animate-spin" /> : <Send />}
+            {isLLoading ? <Loader2 className="animate-spin" /> : <Send />}
           </Button>
         </div>
       </div>
@@ -92,7 +110,7 @@ const page = () => {
       </div>
       <section className="w-full flex justify-start flex-col md:max-w-[60vw] sm:max-w-[75vw]">
         <div className="">
-          <Button>Suggest Messages</Button>
+          <Button onClick={handleSuggetion}>Suggest Messages</Button>
           <p className="mt-3 font-semibold">
             Click on any message below to select it.
           </p>
@@ -122,4 +140,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Chat;

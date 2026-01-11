@@ -3,10 +3,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -22,28 +18,31 @@ import {
 } from "@/components/ui/dialog";
 import { Message } from "@/models/User";
 import axios from "axios";
-import { Loader2 } from "lucide-react";
+import { Loader2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 type MessageCardProp = {
+  userId: string | undefined;
   message: Message;
   onMessageDelete: (messageId: string) => void;
 };
 
-const MessageCard = ({ message, onMessageDelete }: MessageCardProp) => {
+const MessageCard = ({ message, onMessageDelete, userId }: MessageCardProp) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // console.log('Messsages ddata: ', message);
   const handleDeleteConfirm = async () => {
-    setIsSubmitting(true)
+    // setIsSubmitting(true);
     try {
-      const response = await axios.delete(`/api/deletemessage/${message._id}`);
+      const response = await axios.delete(`/api/deletemessage?userId=${userId}&messageId=${message._id}`);
   
+      // console.log("RESPONSE: ", response)
       if (!response.data.success) {
-        toast.error("Unable to delete message");
+        toast.error("Failed to delete message");
       }
       if (response.data.success) {
-        toast.error("Message deleted successfully");
+        toast.success("Message deleted successfully");
       }
     } catch (error) {
       toast.error("Unexpected Error occured");
@@ -55,16 +54,15 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProp) => {
     <div className="w-full">
       <Card>
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-          <Dialog>
-            <DialogTrigger>Open</DialogTrigger>
+          <CardTitle>{message.content}</CardTitle>
+        </CardHeader>
+        <Dialog>
+            <DialogTrigger><X className="bg-[#f54a00] text-white rounded-sm px-0.5 py-0.5 hover:bg-orange-400 ml-3.5"/></DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Are you absolutely sure?</DialogTitle>
                 <DialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
+                  It will be permanently deleted and this action cannot be undone
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>
@@ -72,10 +70,6 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProp) => {
               </DialogFooter>
             </DialogContent>
           </Dialog>
-        </CardHeader>
-        <CardContent>
-          <p>Card Content</p>
-        </CardContent>
       </Card>
     </div>
   );

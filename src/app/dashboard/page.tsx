@@ -29,7 +29,7 @@ const page = () => {
 
   const { data: session, status } = useSession();
 
-  console.log("Session: ", session, "and STATUS: ", status);
+  // console.log("Session: ", session, "and STATUS: ", status);
   const form = useForm({
     resolver: zodResolver(acceptMessageSchema),
   });
@@ -80,7 +80,7 @@ const page = () => {
 
   const handleSwitchChange = async () => {
     try {
-      const response = await axios.post("/api/acceptmessages", {
+      await axios.post("/api/acceptmessages", {
         acceptMessages: !acceptMessages,
       });
       setValue("acceptMessages", !acceptMessages);
@@ -148,10 +148,11 @@ const page = () => {
             <RefreshCcw className="h-4 w-4" />
           )}
         </Button>
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {messages.length > 0 ? (
             messages.map((message, index) => (
               <MessageCard
+                userId={session.user._id}
                 key={index}
                 message={message}
                 onMessageDelete={handleDeleteMessage}

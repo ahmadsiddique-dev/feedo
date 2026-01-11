@@ -25,7 +25,6 @@ export default function Component() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const debounced = useDebounceCallback(setUsername, 500);
-  const sonner = useSonner();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof signUpSchema>>({
@@ -96,7 +95,7 @@ export default function Component() {
 
   return (
     <>
-      <div className="min-h-screen justify-center items-center flex bg-gray-100">
+      <div className="min-h-[90vh] justify-center items-center flex bg-gray-100">
         <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-mg">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">Join Feedo Today</h1>
