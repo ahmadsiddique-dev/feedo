@@ -71,3 +71,7 @@ yes i changes this **shity** command
 # Readme also
 
 Made with ![alt text](image.png) by _**Ahmad Siddique**_
+
+# Oh bTW here are the Routes names
+
+![alt text](image-2.png)
