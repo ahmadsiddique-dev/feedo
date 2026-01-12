@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
 import axios from "axios";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -33,6 +33,16 @@ const page = () => {
             toast.error("Error while fetching users")
         }
     }
+
+  if (!data.length) {
+    return (
+      <div className="w-full flex justify-center items-center">
+        <span>
+          <Loader2 className="h-16 mt-32  text-orange-500 w-16 animate-spin" />
+        </span>
+      </div>
+    )
+  }
 
 
   return (
