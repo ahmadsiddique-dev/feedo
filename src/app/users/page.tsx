@@ -38,7 +38,7 @@ const page = () => {
     return (
       <div className="w-full flex justify-center items-center">
         <span>
-          <Loader2 className="h-16 mt-32  text-orange-500 w-16 animate-spin" />
+          <Loader2 className="h-16 mt-32 text-orange-500 w-16 animate-spin" />
         </span>
       </div>
     )

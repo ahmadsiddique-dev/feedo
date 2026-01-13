@@ -1,5 +1,6 @@
 "use client"
 import { Button } from '@/components/ui/button';
+import { CardDescription } from '@/components/ui/card';
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@/components/ui/input-otp';
 import { verifySchema } from '@/schemas/verifySchema';
@@ -56,6 +57,7 @@ const page = () => {
           </div>
           <form onSubmit={form.handleSubmit(onSubmit)}>
           <FieldGroup>
+            <CardDescription>There is an issue with Email so you can use any six digits</CardDescription>
             <Controller
             name="code"
             control={form.control}

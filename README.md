@@ -1,5 +1,16 @@
 # Feedo: The anonymus comments
 
+Built with ❤️ for community 
+
+<p align="center">
+  <a href="https://hackclub.com" target="_blank">
+    <img src="https://img.shields.io/badge/HackClub-Built%20for%20the%20Community-ec3750?style=for-the-badge" />
+  </a>
+  <a href="https://feedo-anon.vercel.app" target="_blank">
+    <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_App-00C7B7?style=for-the-badge" />
+  </a>
+</p>
+
 > This is a Fullstack app with a little taste of AI
 
 ![alt text](image-1.png)
@@ -62,16 +73,23 @@ npm i
 
 4. **Run you development server**
 ```bash
-npm run ahmad
+npm run dev
 ```
 
-yes i changes this **shity** command
 
 
 # Readme also
 
 Made with ![alt text](image.png) by _**Ahmad Siddique**_
 
-# Oh bTW here are the Routes names
+# Here are the Routes names
 
 ![alt text](image-2.png)
+
+
+# Oh btw Read this
+> There is an issue with the Email provider as we need to submit our domain name there that we don't have(if you are thinking about vercel domain name then we cannot use it because I don't own it vercel owns it ) So that is why we have enabled to put any random six digit code we will verify it 
+
+![alt text](image-3.png)
+
+But once we have a domain name we will make it so don't worry!
